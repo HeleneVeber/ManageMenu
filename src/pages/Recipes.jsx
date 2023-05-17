@@ -1,32 +1,58 @@
 import { useState, useEffect } from "react";
 import { getRecipes } from "../api/getRecipes";
 import Header from "../components/Header/Header";
+//import { styled } from "styled-components";
 
 export default function Recipes() {
-  const [recipes, setRecipes] = useState([]);
+  const [recipesChecked, setRecipesChecked] = useState([
+    {
+      id: "",
+      recipe: "",
+      checked: false,
+    },
+  ]);
 
   useEffect(() => {
-    async function getRecipesLoad() {
+    const getRecipesLoad = async () => {
       const data = await getRecipes();
-      setRecipes(data);
-    }
-    getRecipesLoad();
+      const recipes = data.map((e) => {
+        return {
+          recipe: e.recipe.label,
+          checked: false,
+        };
+      });
+      setRecipesChecked(recipes);
+    };
+    //getRecipesLoad();
   }, []);
+
+  const handleRecipesChecked = (index) => {
+    const updateRecipesChecked = [...recipesChecked];
+    updateRecipesChecked[index].checked = !updateRecipesChecked[index].checked;
+    setRecipesChecked(updateRecipesChecked);
+  };
+
+  console.log(recipesChecked);
 
   return (
     <>
       <Header />
       <main>
-        <h1>Choisissez vos recettes</h1>
-        {recipes.map((e, i) => (
+        <h2>Choisissez vos recettes</h2>
+
+        {recipesChecked.map((e, i) => (
           <div key={i}>
-            <input
-              type="checkbox"
-              name="recipe"
-              id="recipe"
-              value={e.recipe.label}
-            />
-            <label htmlFor="recipe">{e.recipe.label}</label>
+            <label htmlFor="recipe">
+              <input
+                type="checkbox"
+                name="recipe"
+                id="recipe"
+                value={e.recipe}
+                onClick={() => handleRecipesChecked(i)}
+                checked={e.checked}
+              />
+              {e.recipe}
+            </label>
           </div>
         ))}
       </main>

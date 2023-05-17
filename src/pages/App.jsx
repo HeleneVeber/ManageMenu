@@ -5,7 +5,7 @@ export default function App() {
     <>
       <Header />
       <main>
-        <h1>Bonjour</h1>
+        <h2>Bonjour</h2>
       </main>
     </>
   );
