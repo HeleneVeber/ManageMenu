@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getRecipes } from "../api/getRecipes";
 import Header from "../components/Header/Header";
+import Checkbox from "../components/Checkbox/Checkbox";
 //import { styled } from "styled-components";
 
 export default function Recipes() {
@@ -23,7 +24,7 @@ export default function Recipes() {
       });
       setRecipesChecked(recipes);
     };
-    //getRecipesLoad();
+    getRecipesLoad();
   }, []);
 
   const handleRecipesChecked = (index) => {
@@ -31,9 +32,7 @@ export default function Recipes() {
     updateRecipesChecked[index].checked = !updateRecipesChecked[index].checked;
     setRecipesChecked(updateRecipesChecked);
   };
-
-  console.log(recipesChecked);
-
+  //console.log(recipesChecked);
   return (
     <>
       <Header />
@@ -42,17 +41,13 @@ export default function Recipes() {
 
         {recipesChecked.map((e, i) => (
           <div key={i}>
-            <label htmlFor="recipe">
-              <input
-                type="checkbox"
-                name="recipe"
-                id="recipe"
-                value={e.recipe}
-                onClick={() => handleRecipesChecked(i)}
-                checked={e.checked}
-              />
-              {e.recipe}
-            </label>
+            <Checkbox
+              index={i}
+              label={e.recipe}
+              checked={e.checked}
+              nameId={`recipe-${i}`}
+              onChange={() => handleRecipesChecked(i)}
+            />
           </div>
         ))}
       </main>
