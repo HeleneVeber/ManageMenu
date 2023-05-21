@@ -1,14 +1,34 @@
-import { useContext, useState } from "react";
-import { RecipeContext } from "../context/RecipesContext";
+import { useState, useEffect } from "react";
 import Header from "../components/Header/Header";
 import Checkbox from "../components/Utils/Checkbox";
-import { useEffect } from "react";
+import getRecipes from "../../src/api/getRecipes";
 
 //import { styled } from "styled-components";
 
 export default function Recipes() {
-  const recipesData = useContext(RecipeContext);
   const [recipesChecked, setRecipesChecked] = useState([]);
+  const [recipesData, setrecipesData] = useState([
+    {
+      recipe: "",
+      checked: false,
+      ingredients: [],
+    },
+  ]);
+
+  useEffect(() => {
+    const getRecipesLoad = async () => {
+      const data = await getRecipes();
+      const recipes = data.map((e) => {
+        return {
+          recipe: e.recipe.label,
+          checked: false,
+          ingredients: e.recipe.ingredientLines,
+        };
+      });
+      setrecipesData(recipes);
+    };
+    getRecipesLoad();
+  }, []);
 
   useEffect(() => {
     setRecipesChecked(recipesData);

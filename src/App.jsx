@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Recipes from "./Recipes";
-import ShoppingList from "./ShoppingList";
-import "../../src/index.css";
+import Recipes from "./pages/Recipes";
+import ShoppingList from "./pages/ShoppingList";
+import "./index.css";
 
 export default function App() {
   return (
