@@ -43,9 +43,7 @@ export default function App() {
           />
           <Route
             path="/ShoppingList"
-            element={
-              <ShoppingList recipes={recipesData} setRecipes={setRecipesData} />
-            }
+            element={<ShoppingList recipes={recipesData} />}
           />
         </Routes>
       </Router>

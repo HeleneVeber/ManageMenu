@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Checkbox from "../components/Utils/Checkbox";
-
-import { Link } from "react-router-dom";
-
 //import { styled } from "styled-components";
 
 export default function Recipes({ recipes, setRecipes }) {
@@ -19,6 +17,7 @@ export default function Recipes({ recipes, setRecipes }) {
       <Header />
       <main>
         <h2>Choisissez vos recettes</h2>
+
         <form>
           {recipes.map((e, i) => (
             <div key={i}>

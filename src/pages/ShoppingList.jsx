@@ -32,7 +32,6 @@ export default function ShoppingList({ recipes }) {
     setIngredients(mapIngredientsList);
   }, [recipes]);
 
-  console.log(ingredients);
   return (
     <>
       <h2>Voici votre liste de course</h2>
