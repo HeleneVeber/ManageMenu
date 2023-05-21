@@ -1,57 +1,41 @@
-import { useState, useEffect } from "react";
-import { getRecipes } from "../api/getRecipes";
+/* eslint-disable react/prop-types */
 import Header from "../components/Header/Header";
 import Checkbox from "../components/Utils/Checkbox";
+
+import { Link } from "react-router-dom";
+
 //import { styled } from "styled-components";
 
-export default function Recipes() {
-  const [recipesChecked, setRecipesChecked] = useState([
-    {
-      recipe: "",
-      checked: false,
-      ingredients: [],
-    },
-  ]);
-
-  useEffect(() => {
-    const getRecipesLoad = async () => {
-      const data = await getRecipes();
-
-      const recipes = data.map((e) => {
-        return {
-          recipe: e.recipe.label,
-          checked: false,
-          ingredients: e.recipe.ingredientLines,
-        };
-      });
-      setRecipesChecked(recipes);
-    };
-    getRecipesLoad();
-  }, []);
-
+export default function Recipes({ recipes, setRecipes }) {
   const handleRecipesChecked = (index) => {
-    const updateRecipesChecked = [...recipesChecked];
-    updateRecipesChecked[index].checked = !updateRecipesChecked[index].checked;
-    setRecipesChecked(updateRecipesChecked);
+    const newRecipes = [...recipes];
+    newRecipes[index].checked = !newRecipes[index].checked;
+    setRecipes(newRecipes);
   };
-  //console.log(recipesChecked);
+
+  console.log("recipes", recipes);
   return (
     <>
       <Header />
       <main>
         <h2>Choisissez vos recettes</h2>
+        <form>
+          {recipes.map((e, i) => (
+            <div key={i}>
+              <Checkbox
+                index={i}
+                label={e.recipe}
+                checked={e.checked}
+                nameId={`recipe-${i}`}
+                onChange={() => handleRecipesChecked(i)}
+              />
+            </div>
+          ))}
 
-        {recipesChecked.map((e, i) => (
-          <div key={i}>
-            <Checkbox
-              index={i}
-              label={e.recipe}
-              checked={e.checked}
-              nameId={`recipe-${i}`}
-              onChange={() => handleRecipesChecked(i)}
-            />
-          </div>
-        ))}
+          <Link to="/shoppingList">
+            <input type="submit" value="Validez" />
+          </Link>
+        </form>
       </main>
     </>
   );
