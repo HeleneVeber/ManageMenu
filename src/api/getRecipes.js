@@ -5,8 +5,7 @@ import axios from "axios";
 
 const apiUrl2 =
   "https://api.edamam.com/api/recipes/v2?type=public&app_id=81885ef9&app_key=e5a165c5be09e110f5c701a9653ae8cf&diet=balanced&mealType=Lunch&imageSize=SMALL&random=true&field=uri&field=label&field=image&field=url&field=ingredientLines";
-
-export const getRecipes = async () => {
+const getRecipes = async () => {
   try {
     const { data } = await axios.get(apiUrl2);
     return data.hits;
@@ -14,5 +13,4 @@ export const getRecipes = async () => {
     return console.log(error);
   }
 };
-
-// export = { getRecipes };
+export default getRecipes;

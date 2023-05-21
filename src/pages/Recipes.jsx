@@ -1,50 +1,26 @@
-import { useContext, useState } from "react";
-import { RecipeContext } from "../context/RecipesContext";
+/* eslint-disable react/prop-types */
 import Header from "../components/Header/Header";
 import Checkbox from "../components/Utils/Checkbox";
-import { useEffect } from "react";
+
+import { Link } from "react-router-dom";
 
 //import { styled } from "styled-components";
 
-export default function Recipes() {
-  const recipesData = useContext(RecipeContext);
-  const [recipesChecked, setRecipesChecked] = useState([]);
-
-  useEffect(() => {
-    setRecipesChecked(recipesData);
-  }, [recipesData]);
-
+export default function Recipes({ recipes, setRecipes }) {
   const handleRecipesChecked = (index) => {
-    const newRecipesChecked = [...recipesChecked];
-    newRecipesChecked[index].checked = !newRecipesChecked[index].checked;
-    setRecipesChecked(newRecipesChecked);
+    const newRecipes = [...recipes];
+    newRecipes[index].checked = !newRecipes[index].checked;
+    setRecipes(newRecipes);
   };
 
-  // const getIngredients = (array) => {
-  //   const ingredients = [];
-  //   array.map((e) => {
-  //     if (e.checked) {
-  //       ingredients.push(e.ingredients);
-  //       console.log("ingredients", ingredients);
-  //     }
-  //   });
-  //   return ingredients;
-  // };
-  // const toto = getIngredients(recipeData);
-  // console.log("toto", toto);
-
-  // const test = { message: "bonjour" };
-  //getIngredients(recipeData);
-
-  console.log("recipesData", recipesData);
-  console.log("recipesChecked", recipesChecked);
+  console.log("recipes", recipes);
   return (
     <>
       <Header />
       <main>
         <h2>Choisissez vos recettes</h2>
-        <form action="/ShoppingList">
-          {recipesData.map((e, i) => (
+        <form>
+          {recipes.map((e, i) => (
             <div key={i}>
               <Checkbox
                 index={i}
@@ -56,7 +32,9 @@ export default function Recipes() {
             </div>
           ))}
 
-          <input type="submit" value="Validez" />
+          <Link to="/shoppingList">
+            <input type="submit" value="Validez" />
+          </Link>
         </form>
       </main>
     </>
