@@ -17,8 +17,8 @@ export default function BurgerMenu() {
         <img src="../../../../src/assets/menu.png" alt="Menu" />
       </MenuButton>
       <nav style={{ display: showNavBar ? "inline" : "none" }}>
-        <PageLink to="/">App</PageLink>
         <PageLink to="/recipes">Vos recettes</PageLink>
+        <PageLink to="/shoppingList">Votre liste de course</PageLink>
       </nav>
     </>
   );
