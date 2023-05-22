@@ -6,6 +6,7 @@
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
         "plugin:react-hooks/recommended",
         "airbnb",
         "plugin:prettier/recommended"
@@ -16,5 +17,7 @@
         "sourceType": "module"
     },
     "plugins": ["react"],
-    "rules": {}
+    "rules": {
+        "react/react-in-jsx-scope": "off"
+    }
 }
