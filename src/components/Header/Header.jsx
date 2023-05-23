@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import BurgerMenu from "./components/BurgerMenu";
+import styled from 'styled-components';
+import BurgerMenu from './components/BurgerMenu';
 
 const HeaderStyle = styled.header`
   position: absolute;
@@ -25,7 +25,7 @@ const TitleH1 = styled.h1`
   height: 30px;
   left: calc(50% - 197px / 2 - 0.5px);
   top: 81px;
-  font-family: "Cabin Sketch";
+  font-family: 'Cabin Sketch';
   font-style: normal;
   font-weight: 400;
   font-size: 36px;

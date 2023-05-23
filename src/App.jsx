@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Recipes from "./pages/Recipes";
-import ShoppingList from "./pages/ShoppingList";
-import getRecipes from "./api/getRecipes";
-import "./index.css";
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Recipes from './pages/Recipes';
+import ShoppingList from './pages/ShoppingList';
+import getRecipes from './api/getRecipes';
+import './index.css';
 
 export default function App() {
   const [recipesData, setRecipesData] = useState([
     {
-      id: "",
-      recipe: "",
+      id: '',
+      recipe: '',
       checked: false,
-      ingredients: [],
-    },
+      ingredients: []
+    }
   ]);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function App() {
           id: i,
           recipe: e.recipe.label,
           checked: false,
-          ingredients: e.recipe.ingredientLines,
+          ingredients: e.recipe.ingredientLines
         };
       });
       setRecipesData(recipes);
@@ -37,14 +37,9 @@ export default function App() {
         <Routes>
           <Route
             path="/recipes"
-            element={
-              <Recipes recipes={recipesData} setRecipes={setRecipesData} />
-            }
+            element={<Recipes recipes={recipesData} setRecipes={setRecipesData} />}
           />
-          <Route
-            path="/ShoppingList"
-            element={<ShoppingList recipes={recipesData} />}
-          />
+          <Route path="/ShoppingList" element={<ShoppingList recipes={recipesData} />} />
         </Routes>
       </Router>
     </React.StrictMode>

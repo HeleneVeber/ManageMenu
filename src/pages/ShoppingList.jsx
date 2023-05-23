@@ -1,17 +1,18 @@
-import { useState, useEffect } from "react";
-import Checkbox from "../components/Utils/Checkbox";
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from 'react';
+import Checkbox from '../components/Utils/Checkbox';
 
 export default function ShoppingList({ recipes }) {
   const [ingredients, setIngredients] = useState([
     {
-      id: "",
-      ingredient: "",
-      checked: false,
-    },
+      id: '',
+      ingredient: '',
+      checked: false
+    }
   ]);
   const getIngredients = (array) => {
     const recipesChecked = [];
-    array.map((e) => {
+    array.forEach((e) => {
       if (e.checked) {
         recipesChecked.push(e.ingredients);
       }
@@ -25,23 +26,32 @@ export default function ShoppingList({ recipes }) {
       return {
         id: i,
         ingredient: e,
-        checked: false,
+        checked: false
       };
     });
     setIngredients(mapIngredientsList);
   }, [recipes]);
 
+  const handleIngredientsChecked = (index) => {
+    const newIngredients = [...ingredients];
+    newIngredients[index].checked = !newIngredients[index].checked;
+    setIngredients(newIngredients);
+  };
+
   return (
     <>
       <h2>Voici votre liste de course</h2>
-      {ingredients.map((e, i) => (
-        <div key={i}>
+      {ingredients.map((e) => (
+        <div key={e.id}>
           <Checkbox
-            index={i}
-            label={e.ingredient}
+            nameId={`ingredient-${e.id}`}
+            value={e.ingredient}
             checked={e.checked}
-            nameId={`ingredient-${i}`}
-            // onChange={() => handleRecipesChecked(i)}
+            onChange={() => handleIngredientsChecked(e.id)}
+            borderColorChecked={e.checked ? '2px solid #F6676D' : ''}
+            hoverBackground="#F6676D87"
+            colorCheck="#F6676D"
+            textLineThrough
           />
         </div>
       ))}
