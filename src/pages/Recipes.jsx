@@ -1,23 +1,17 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
 import Header from '../components/Header/Header';
-import Checkbox from '../components/Utils/Checkbox';
+import Checkbox from '../components/utils/Checkbox';
+import handleArrayCheckbox from '../functions/handleCheckbox';
 // import { styled } from "styled-components";
 
 export default function Recipes({ recipes, setRecipes }) {
-  const handleRecipesChecked = (index) => {
-    const newRecipes = [...recipes];
-    newRecipes[index].checked = !newRecipes[index].checked;
-    setRecipes(newRecipes);
-  };
-
-  console.log('recipes', recipes);
+  // console.log('recipes', recipes);
   return (
     <>
       <Header />
       <main>
         <h2>Choisissez vos recettes</h2>
-
         <form>
           {recipes.map((e) => (
             <div key={e.id}>
@@ -26,7 +20,7 @@ export default function Recipes({ recipes, setRecipes }) {
                 nameId={`recipe-${e.id}`}
                 value={e.recipe}
                 checked={e.checked}
-                onChange={() => handleRecipesChecked(e.id)}
+                onChange={() => handleArrayCheckbox(recipes, setRecipes, e.id)}
                 borderColorChecked={e.checked ? '2px solid #8BB2A0' : ''}
                 hoverBackground="#8BB2A087"
                 colorCheck="#8BB2A0"

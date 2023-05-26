@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
-import Checkbox from '../components/Utils/Checkbox';
+import Checkbox from '../components/utils/Checkbox';
+import handleArrayCheckbox from '../functions/handleCheckbox';
 
 export default function ShoppingList({ recipes }) {
   const [ingredients, setIngredients] = useState([
@@ -32,12 +33,6 @@ export default function ShoppingList({ recipes }) {
     setIngredients(mapIngredientsList);
   }, [recipes]);
 
-  const handleIngredientsChecked = (index) => {
-    const newIngredients = [...ingredients];
-    newIngredients[index].checked = !newIngredients[index].checked;
-    setIngredients(newIngredients);
-  };
-
   return (
     <>
       <h2>Voici votre liste de course</h2>
@@ -47,7 +42,7 @@ export default function ShoppingList({ recipes }) {
             nameId={`ingredient-${e.id}`}
             value={e.ingredient}
             checked={e.checked}
-            onChange={() => handleIngredientsChecked(e.id)}
+            onChange={() => handleArrayCheckbox(ingredients, setIngredients, e.id)}
             borderColorChecked={e.checked ? '2px solid #F6676D' : ''}
             hoverBackground="#F6676D87"
             colorCheck="#F6676D"
