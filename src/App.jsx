@@ -15,19 +15,19 @@ export default function App() {
     }
   ]);
 
+  const getRecipesLoad = async () => {
+    const data = await getRecipes();
+    const recipes = data.map((e, i) => {
+      return {
+        id: i,
+        recipe: e.recipe.label,
+        checked: false,
+        ingredients: e.recipe.ingredientLines
+      };
+    });
+    setRecipesData(recipes);
+  };
   useEffect(() => {
-    const getRecipesLoad = async () => {
-      const data = await getRecipes();
-      const recipes = data.map((e, i) => {
-        return {
-          id: i,
-          recipe: e.recipe.label,
-          checked: false,
-          ingredients: e.recipe.ingredientLines
-        };
-      });
-      setRecipesData(recipes);
-    };
     getRecipesLoad();
   }, []);
 
