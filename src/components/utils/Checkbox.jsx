@@ -66,7 +66,6 @@ const CheckboxLabel = styled.label`
   margin: 0.3em 1em 0 0.5em;
 `;
 const LabelText = styled.span`
-  font-family: 'IBM Plex Sans Thai Looped';
   ${CheckboxInput}:checked + && {
     font-weight: 700;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

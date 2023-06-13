@@ -1,8 +1,17 @@
 import styled from 'styled-components';
 import BurgerMenu from './components/BurgerMenu';
 
+export default function Header() {
+  return (
+    <HeaderStyle>
+      <BurgerMenu />
+      <LogoImg src="../../src/assets/RecipeBook-pana.svg" alt="logo du site" />
+      <TitleH1>Manage Menu</TitleH1>
+    </HeaderStyle>
+  );
+}
+
 const HeaderStyle = styled.header`
-  position: absolute;
   width: 100%;
   height: 164px;
   left: 0px;
@@ -35,13 +44,3 @@ const TitleH1 = styled.h1`
   text-align: center;
   color: #403f3e;
 `;
-
-export default function Header() {
-  return (
-    <HeaderStyle>
-      <BurgerMenu />
-      <LogoImg src="../../src/assets/RecipeBook-pana.svg" alt="logo du site" />
-      <TitleH1>Manage Menu</TitleH1>
-    </HeaderStyle>
-  );
-}
