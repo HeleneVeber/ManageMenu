@@ -21,9 +21,9 @@ export default function App() {
     const recipes = data.map((e, i) => {
       return {
         id: i,
-        recipe: e.recipe.label,
+        recipe: e.name,
         checked: false,
-        ingredients: e.recipe.ingredientLines
+        ingredients: e.ingredients
       };
     });
     setRecipesData(recipes);
