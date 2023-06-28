@@ -2,11 +2,13 @@
 import Checkbox from '../components/utils/Checkbox';
 import handleArrayCheckbox from '../functions/handleCheckbox';
 import ButtonLink from '../components/utils/ButtonLink';
+import AddRecipe from '../components/addRecipe/AddRecipeForm';
 
 export default function Recipes({ recipes, setRecipes }) {
   // console.log('recipes', recipes);
   return (
-    <main>
+    <>
+      <AddRecipe />
       <h2>Choisissez vos recettes</h2>
       {recipes.map((e) => (
         <div key={e.id}>
@@ -23,6 +25,6 @@ export default function Recipes({ recipes, setRecipes }) {
         </div>
       ))}
       <ButtonLink linkTo="/shoppingList" value="Validez" />
-    </main>
+    </>
   );
 }
